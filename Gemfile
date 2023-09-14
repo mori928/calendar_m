@@ -72,3 +72,4 @@ group :test do
 end
 
 gem 'simple_calendar'
+gem 'sassc'
