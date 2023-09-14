@@ -1,18 +1,12 @@
+<!-- 予約者が新規予約をするページ -->
+
+<!--- 予約の初期登録ができる画面 ホストのみ利用可能--->
+<p id="notice"><%= notice %></p>
+
 <div class="toppage">
-<h2 class="top">予約カレンダー</h2>
-<div class="col-md-8">
-<%= month_calendar events: @yoyakus do |date, yoyakus| %>
-  <%= date.day %>
-
-  <% yoyakus.each do |yoyaku| %>
-<div class="calendar__yoyaku">
-    <div>
-      <%= link_to yoyaku.title, yoyaku %> 
-    </div>
-  <% end %>
-<% end %>
-
+<h1 class="top">予約用カレンダー</h1>
 <br>
+
 <div class="row">
 <div class="col-md-4">
 	<div class="schedule">今後の予定一覧</div>
@@ -34,15 +28,16 @@
   </tbody>
 </table>
 
-<p class="edit_table" id="notice"><%= notice %></p>
 <%= form_with(model: @yoyaku, local: true) do |form| %>
+
   <div class="title">
-    <div class="form-tag">予約内容</div>
+    <div class="form-tag">タイトル</div>
     <%= form.text_field :title %>
   </div>
 
+
   <div class="content">
-    <div class="form-tag">iD</div>
+    <div class="form-tag">内容</div>
     <%= form.text_field :content %>
   </div>
 
@@ -58,6 +53,19 @@
   </div>
 <br>
 
+
+<!-- <br> -->
+<!-- <div class="col-md-8">
+<%= month_calendar events: @yoyakus do |date, yoyakus| %>
+  <%= date.day %>
+
+  <% yoyakus.each do |yoyaku| %>
+<div class="calendar__yoyaku">
+    <div>
+      <%= link_to yoyaku.title, yoyaku %> 
+    </div>
+  <% end %>
+<% end %>
 </div>
 </div>
-</div>
+</div> -->

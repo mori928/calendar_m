@@ -1,0 +1,14 @@
+.calendar-title {
+  font-size: 24px; /* フォントサイズを大きくする（適切なサイズに調整） */
+  font-weight: bold; /* フォントを太くする */
+  color: #b10530; /* テキストの色を指定（任意のカラーコードを使用） */
+}
+
+.month_name {
+  font-size: 20px; /* フォントサイズを大きくする（適切なサイズに調整） */
+  justify-content: space-between; /* 要素を等間隔に配置 */
+}
+
+.month_name a {
+  margin: 0 20px; /* 左右のマージンを10pxに設定 */
+}

@@ -1,0 +1,32 @@
+.top {
+  text-align: center; /* テキストを水平中央に配置 */
+  /*vertical-align: middle; /* テキストを垂直中央に配置 */
+  line-height: 60px; /* テキストの高さを要素の高さと合わせて中央に配置 */
+  height: 60px; /* 要素の高さを指定（適切な高さを指定してください） */
+}
+
+.col-md-8 {
+  text-align: center; /* テキストを水平中央に配置 */
+  padding: 10px 0; /* タイトルの上下の余白を設定（必要に応じて調整） */
+  font-size: 18px; 
+}
+
+.schedule {  /*予定一覧*/
+  text-align: center; /* テキストを水平中央に配置 */
+  padding: 10px 0; /* タイトルの上下の余白を設定（必要に応じて調整） */
+  font-size: 18px; 
+}
+
+.table {  /*予定の詳細*/
+  text-align: center; /* テキストを水平中央に配置 */
+  padding: 10px 0; /* タイトルの上下の余白を設定（必要に応じて調整） */
+  font-size: 18px; 
+}
+
+.edit_table {  /*予定の詳細*/
+  text-align: center; /* テキストを水平中央に配置 */
+  padding: 10px 0; /* タイトルの上下の余白を設定（必要に応じて調整） */
+  font-size: 18px; 
+  font-weight: bold; /* フォントを太くする */
+  color: #b10530;
+}

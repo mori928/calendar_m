@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  get 'yoyaku/index'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root to: 'yoyakus#index'  # ルートパスの設定
+  resources :yoyakus      # RESTfulなリソースとしてのルート
 
-  # Defines the root path route ("/")
-  # root "articles#index"
 end
