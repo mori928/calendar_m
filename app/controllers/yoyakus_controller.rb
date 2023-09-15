@@ -1,8 +1,8 @@
 class YoyakusController < ApplicationController
   def index
-    # データの取得
     @yoyakus = Yoyaku.all
-    # render yoyakus#index
+    @yoyaku = Yoyaku.new
+    render 'yoyakus/index' 
   end
   
   def new

@@ -9,6 +9,7 @@
     <div>
       <%= link_to yoyaku.title, yoyaku %> 
     </div>
+    </div>
   <% end %>
 <% end %>
 
@@ -37,7 +38,7 @@
 <p class="edit_table" id="notice"><%= notice %></p>
 <%= form_with(model: @yoyaku, local: true) do |form| %>
   <div class="title">
-    <div class="form-tag">予約内容</div>
+    <div class="form-tag">ホスト側入力画面</div>
     <%= form.text_field :title %>
   </div>
 

@@ -1,29 +1,32 @@
 # テーブル設計
 
+## yoyakusテーブル
+
+| Column             | Type       | Options             |
+| -------------------| ---------- | --------------------|
+| discus_type_id     | integer    | null: false         |
+| title              | text       | null: false         |
+| start_time         | datetime   | null: false         |
+
+### Association
+
+- has_one :user 
+
+
+
 ## users テーブル
 
-| Column         | Type     | Options                       |
-| -------------- | ------   | ------------------------------|
-| result_id      | integer  | null: false, unique: true     |
-| email          | string   | null: false, unique: true     |
-| comment        | string   | null: false                   |
-| yoyaku         | string   | null: false                   |
+| Column       | Type       | Options                       |
+| ------------ | ---------  | ------------------------------|
+| personal_id  | integer    | null: false, unique: true     |
+| email        | string     | null: false, unique: true     |
+| comment      | text       | null: false                   |
+| yoyaku_id    | references | null: false, foreign_key:     | 
 
 ### Association
 - has_many :yoyakus
 
 
-
-## hosts テーブル
-
-| Column             | Type       | Options             |
-| -------- ----------| ---------- | --------------------|
-| start_time         | string     | null: false         |
-| discus_type_id     | text       | null: false         |
-
-### Association
-
-- has_one :user 
 
 
 
