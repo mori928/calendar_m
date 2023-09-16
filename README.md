@@ -4,9 +4,10 @@
 
 | Column             | Type       | Options             |
 | -------------------| ---------- | --------------------|
-| discus_type_id     | integer    | null: false         |
-| title              | text       | null: false         |
+| title              | string     | null: false         |
+| content            | text       | null: false         |
 | start_time         | datetime   | null: false         |
+
 
 ### Association
 
