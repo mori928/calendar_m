@@ -1,3 +1,4 @@
+
 <div class="toppage">
 <h2 class="top">予約カレンダー</h2>
 <div class="col-md-8">
@@ -20,7 +21,7 @@
 <table class="table">
   <thead class="thead-light">
     <tr>
-      <th>タイトル</th>
+      <th>予約詳細</th>
       <th>日程</th>
     </tr>
   </thead>
@@ -28,7 +29,7 @@
   <tbody>
     <% @yoyakus.each do |yoyaku| %>
       <tr>
-        <td><%= link_to yoyaku.title , yoyaku %></td>
+        <td><%= link_to yoyaku.title, yoyaku %></td>
         <td><%= yoyaku.start_time.strftime("%m-%d") %></td>
       </tr>
     <% end %>

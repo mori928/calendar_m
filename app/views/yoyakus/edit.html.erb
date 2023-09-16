@@ -2,7 +2,7 @@
 
   <div class="title">
     <div class="form-tag">予約内容</div>
-    <%= form.text_field :title%>
+    <%= form.text_field :title %>
   </div>
 
 
@@ -15,6 +15,11 @@
     <div class="form-tag">時間</div>
     <%= form.datetime_select :start_time %>
   </div>
+
+<p>
+  <strong>コメント</strong>
+  <%= @yoyaku.start_time.strftime("%m-%d") %>
+</p>
 
 
   <div class="submit">

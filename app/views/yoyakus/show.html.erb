@@ -16,6 +16,11 @@
   <%= @yoyaku.start_time.strftime("%m-%d") %>
 </p>
 
+<p>
+  <strong>コメント</strong>
+  <%= @yoyaku.start_time.strftime("%m-%d") %>
+</p>
+
 <%= link_to '編集', edit_yoyaku_path(@yoyaku) %>
 <%= link_to '消去',yoyaku_path(@yoyaku.id), method: :delete, data: { confirm: '本当に?' } %>
 <%= link_to '戻る', yoyakus_path %>

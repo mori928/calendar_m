@@ -22,9 +22,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_14_164055) do
   end
 
   create_table "yoyakus", charset: "utf8", force: :cascade do |t|
-    t.string "content", null: false
-    t.integer "discus_type_id", null: false
-    t.text "title"
+    t.string "title", null: false
+    t.text "content", null: false
     t.datetime "start_time", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
