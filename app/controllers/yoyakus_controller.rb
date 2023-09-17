@@ -9,6 +9,18 @@ class YoyakusController < ApplicationController
     @yoyaku = Yoyaku.new
   end
 
+  # def create
+  #   @yoyaku = Yoyaku.find(params[:id])
+  #   if current_user.admin?
+  #     # 管理者の場合の遷移先
+  #   elsif current_user?
+  #     @yoyaku = Yoyaku.new(yoyaku_params)
+  #   else
+  #     # 一般ユーザーの場合の遷移先
+  #   end
+  # end
+  
+
   def show
     @yoyaku = Yoyaku.find(params[:id])
   end
