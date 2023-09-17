@@ -71,5 +71,6 @@ group :test do
   gem "webdrivers"
 end
 
-gem 'simple_calendar'
-gem 'sassc'
+gem "simple_calendar", "~> 3.0.2"
+gem "sassc"
+gem 'devise'
