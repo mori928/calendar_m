@@ -1,67 +1,65 @@
 
 <div class="toppage">
 <h2 class="top">予約カレンダー</h2>
-  <div class="col-md-8">
-    <%= month_calendar events: @yoyakus do |date, yoyakus| %>
-    <%= date.day %>
-    <% yoyakus.each do |yoyaku| %>
-      <div class="calendar__yoyaku">
-        <div>
-          <%= link_to yoyaku.title, yoyaku %> 
-        </div>
-      </div>
-    <% end %>
-    <% end %>
+<div class="col-md-8">
+<%= month_calendar events: @yoyakus do |date, yoyakus| %>
+  <%= date.day %>
 
-  <br>
-  <nav class="navbar">
-  <!-- 他のナビゲーションメニューなど -->
-  <%= link_to "管理者ログイン", yoyakus_path, class: "login-button" %>
-</nav>
-    <p class="edit_table" id="notice"><%= notice %></p>
-      <%= form_with(model: @yoyaku, local: true) do |form| %>
-        <div class="title">
-        <div class="form-tag">面談タイプ</div>
-          <%= form.text_field :title %>
-        </div>
+  <% yoyakus.each do |yoyaku| %>
+<div class="calendar__yoyaku">
+    <div>
+      <%= link_to yoyaku.title, yoyaku %> 
+    </div>
+    </div>
+  <% end %>
+<% end %>
 
-    <div class="content">
-      <div class="form-tag">備考</div>
-        <%= form.text_field :content %>
-      </div>
+<br>
+<div class="row">
+<div class="col-md-4">
+	<div class="schedule">今後の予定一覧</div>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th>予約詳細</th>
+      <th>日程</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @yoyakus.each do |yoyaku| %>
+      <tr>
+        <td><%= link_to yoyaku.title, yoyaku %></td>
+        <td><%= yoyaku.start_time.strftime("%m-%d") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p class="edit_table" id="notice"><%= notice %></p>
+<%= form_with(model: @yoyaku, local: true) do |form| %>
+  <div class="title">
+    <div class="form-tag">ホスト側入力画面</div>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="content">
+    <div class="form-tag">iD</div>
+    <%= form.text_field :content %>
+  </div>
 
     <div class="time">
-      <div class="form-tag">時間</div>
-        <%= form.datetime_select :start_time %>
-      </div>
+    <div class="form-tag">時間</div>
+    <%= form.datetime_select :start_time %>
+  </div>
 
-    <div class="submit">
-      <%= form.submit %>
-    </div>
+  <div class="submit">
+    <%= form.submit %>
+  </div>
   <% end %>
   </div>
 <br>
 
-<br>
-  <div class="row">
-    <div class="col-md-4">
-	    <div class="schedule">今後の予定一覧</div>
-        <table class="table">
-          <thead class="thead-light">
-            <tr>
-              <th>予約詳細</th>
-              <th>日程</th>
-            </tr>
-          </thead>
-            <tbody>
-              <% @yoyakus.each do |yoyaku| %>
-            <tr>
-              <td><%= link_to yoyaku.title, yoyaku %></td>
-              <td><%= yoyaku.start_time.strftime("%m-%d") %></td>
-            </tr>
-              <% end %>
-            </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+</div>
+</div>
+</div>

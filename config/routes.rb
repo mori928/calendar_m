@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   resources :yoyakus do    # RESTfulなリソースとしてのルート
     resources :users
   end
+
+  # get 'yoyaku/index', to: 'yoyakus#index'
 end
