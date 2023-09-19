@@ -51,6 +51,7 @@
 }
 
 #notice {
-  color: red; /* 赤色のテキスト */
+  color: #b10530; /* 赤色のテキスト */
   font-weight: bold;
 }
+

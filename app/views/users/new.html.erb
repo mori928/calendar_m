@@ -3,12 +3,7 @@
 
 <!-- IDとEmailの登録フォーム -->
 <%= form_with(model: @user,url: yoyaku_users_path, local: true) do |form| %>
-  <div class="comment_form">
-    <%= form.label :comment, '■ 相談内容があれば記載ください' %><br>
-    <%= form.text_area :comment, maxlength: 1000, class: "my-custom-class" %>
-  </div>
-  <br>
-  <div class="form-group">
+    <div class="form-group">
     <%= form.label :parson_no, '■ ご登録番号:' %>
     <%= form.text_field :parson_no %>
   </div>
@@ -17,6 +12,12 @@
     <%= form.text_field :email %>
   </div>
   
-  <br>
+  <div class="comment_form">
+    <%= form.label :comment, '■ 相談内容があれば記載ください' %><br>
+    <%= form.text_area :comment, maxlength: 1000, class: "my-custom-class" %>
+  </div>
+  
+  <p id="notice"><%= notice %></p>
   <%= form.submit '予約する' %>
+  <%= link_to "戻る", root_path %>
 <% end %>

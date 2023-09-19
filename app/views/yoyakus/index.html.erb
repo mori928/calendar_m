@@ -2,6 +2,7 @@
 <div class="toppage">
 <h2 class="top">予約カレンダー</h2>
   <div class="col-md-8">
+  <p id="notice"><%= notice %></p>
     <%= month_calendar events: @yoyakus do |date, yoyakus| %>
     <%= date.day %>
 
@@ -16,7 +17,7 @@
           <!--- %= link_to yoyaku.title, yoyaku %--->
         </div>
       </div>
-    <% end %>
+      <% end %>
     <% end %>
 
   <nav class="navbar">
