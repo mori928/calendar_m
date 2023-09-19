@@ -1,27 +1,24 @@
-<!--- 予約の詳細が確認できる画面 ログインユーザー--->
+<!--- 管理者かユーザによって、見える予約の詳細を変えるようにする--->
+<div class="schedule">＊内容確認画面＊</div>
 <p id="notice"><%= notice %></p>
 <div class="show">
 <p>
-  <strong>面談タイプ</strong>
+  <strong>予約の詳細：</strong>
   <%= @yoyaku.title %>
 </p>
 
 <p>
-  <strong>備考</strong>
+  <strong>詳細：</strong>
   <%= @yoyaku.content %>
 </p>
 
 <p>
-  <strong>日時</strong>
-  <%= @yoyaku.start_time.strftime("%m-%d") %>
+  <strong>日時：</strong>
+  <%= @yoyaku.start_time.strftime("%m-%d %H:%M") %>
 </p>
 
-<p>
-  <strong>コメント</strong>
-  <%= @yoyaku.start_time.strftime("%m-%d") %>
-</p>
 
 <%= link_to '編集', edit_yoyaku_path(@yoyaku) %>
-<%= link_to '消去',yoyaku_path(@yoyaku.id), method: :delete, data: { confirm: '本当に?' } %>
+<%= link_to '消去',yoyaku_path(@yoyaku.id), method: :delete, data: { turbo_confirm: '本当に?' } %>
 <%= link_to '戻る', yoyakus_path %>
 </div>

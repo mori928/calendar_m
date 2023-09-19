@@ -1,25 +1,14 @@
 class YoyakusController < ApplicationController
+
   def index
     @yoyakus = Yoyaku.all
-    @yoyaku = Yoyaku.new
-    render 'yoyakus/index' 
+    @yoyaku = Yoyaku.new 
   end
   
   def new
     @yoyaku = Yoyaku.new
+    @yoyakus = Yoyaku.all
   end
-
-    # def create
-  #   @yoyaku = Yoyaku.find(params[:id])
-  #   if current_user.admin?
-  #     # 管理者の場合の遷移先
-  #   elsif current_user?
-  #     @yoyaku = Yoyaku.new(yoyaku_params)
-  #   else
-  #     # 一般ユーザーの場合の遷移先
-  #   end
-  # end
-  
 
   def show
     @yoyaku = Yoyaku.find(params[:id])
@@ -41,12 +30,20 @@ class YoyakusController < ApplicationController
   end
 
   def update
+    
     @yoyaku = Yoyaku.find(params[:id])
     if @yoyaku.update(yoyaku_parameter)
       redirect_to yoyakus_path, notice: "編集しました"
     else
       render 'edit'
     end
+  end
+
+  def user_show
+    @yoyaku = Yoyaku.find(params[:id])
+    # 他の必要な処理を追加
+    # 予定の詳細と予約確定フォームを表示するため、新しいビューファイルを描画
+    render 'user_show'
   end
 
   private

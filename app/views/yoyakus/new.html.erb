@@ -1,15 +1,12 @@
-<!-- 予約者が新規予約をするページ -->
-
 <!--- 予約の初期登録ができる画面 ホストのみ利用可能--->
 <p id="notice"><%= notice %></p>
 
 <div class="toppage">
-<h1 class="top">予約用カレンダー</h1>
-<br>
+<h2 class="top">予約用カレンダー</h2>
 
 <div class="row">
 <div class="col-md-4">
-	<div class="schedule">今後の予定一覧</div>
+	<div class="schedule">予定一覧new</div>
 <table class="table">
   <thead class="thead-light">
     <tr>
@@ -22,7 +19,7 @@
     <% @yoyakus.each do |yoyaku| %>
       <tr>
         <td><%= link_to yoyaku.title , yoyaku %></td>
-        <td><%= yoyaku.start_time.strftime("%m-%d") %></td>
+        <td><%= yoyaku.start_time.strftime("%m-%d %H:%M") %></td>
       </tr>
     <% end %>
   </tbody>

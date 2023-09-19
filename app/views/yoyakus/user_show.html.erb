@@ -1,0 +1,22 @@
+<!-- show.html.erb -->
+<%= render 'yoyaku_info', yoyaku: @yoyaku %>
+
+<!-- IDとEmailの登録フォーム -->
+<%= form_with(model: @user, local: true) do |form| %>
+  <div class="comment_form">
+    <%= form.label :comment, '■ 相談内容があれば記載ください' %><br>
+    <%= form.text_field :comment, maxlength: 1000, class: "my-custom-class" %>
+  </div>
+  <br>
+  <div class="form-group">
+    <%= form.label :personal_id, '■ ご登録番号:' %>
+    <%= form.text_field :personal_id %>
+  </div>
+  <div class="form-group">
+    <%= form.label :email, '■ Email：' %>
+    <%= form.text_field :email %>
+  </div>
+  
+  <br>
+  <%= form.submit '予約する' %>
+<% end %>

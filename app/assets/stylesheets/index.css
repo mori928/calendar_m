@@ -25,13 +25,19 @@
 }
 
 .schedule {  /*予定一覧*/
+  /*text-align: center; /* テキストを水平中央に配置 */
+  padding: 10px 0; /* タイトルの上下の余白を設定（必要に応じて調整） */
+  font-size: 20px; 
+  font-weight: bold;
+}
+
+.table {  /*予定の詳細*/
   text-align: center; /* テキストを水平中央に配置 */
   padding: 10px 0; /* タイトルの上下の余白を設定（必要に応じて調整） */
   font-size: 18px; 
 }
 
-.table {  /*予定の詳細*/
-  text-align: center; /* テキストを水平中央に配置 */
+.comment {
   padding: 10px 0; /* タイトルの上下の余白を設定（必要に応じて調整） */
   font-size: 18px; 
 }
@@ -43,3 +49,4 @@
   font-weight: bold; /* フォントを太くする */
   color: #b10530;
 }
+

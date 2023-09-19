@@ -3,7 +3,7 @@ class CreateUsers < ActiveRecord::Migration[7.0]
     create_table :users do |t|
       t.integer       :personal_id,  null: false
       t.string        :email,        null: false, default: ""
-      t.text          :comment,      null: false
+      t.text          :comment
       t.references    :yoyaku_id,    null: false
       t.timestamps
     end

@@ -1,22 +1,31 @@
 
 <div class="toppage">
 <h2 class="top">予約カレンダー</h2>
--  <div class="col-md-8">
+  <div class="col-md-8">
     <%= month_calendar events: @yoyakus do |date, yoyakus| %>
     <%= date.day %>
+
     <% yoyakus.each do |yoyaku| %>
       <div class="calendar__yoyaku">
         <div>
-          <%= link_to yoyaku.title, yoyaku %> 
+          <% if current_admin.present? %>
+            <%= link_to yoyaku.title, yoyaku %>  <!-- 管理者向けの詳細ページへのリンク -->
+          <% else %>
+            <%= link_to yoyaku.title, user_show_yoyaku_path(yoyaku) %> <!-- 一般ユーザー向けの新しい予約登録画面へのリンク -->
+          <% end %>
+          <!--- %= link_to yoyaku.title, yoyaku %--->
         </div>
       </div>
     <% end %>
-<% end %>
+    <% end %>
 
-  <br>
   <nav class="navbar">
-  <!-- 他のナビゲーションメニューなど -->
-  <%= link_to "管理者ログイン", yoyakus_path, class: "login-button" %>
+  <%= link_to "管理者ログイン", new_admin_session_path, class: "login-button" %>
+</nav>
+
+<% if current_admin.present? %>
+<nav class="navbar">
+  <%= link_to "管理者ログアウト", destroy_admin_session_path, data: { turbo_method: :delete }, class: "login-button" %>
 </nav>
     <p class="edit_table" id="notice"><%= notice %></p>
       <%= form_with(model: @yoyaku, local: true) do |form| %>
@@ -26,12 +35,12 @@
         </div>
 
     <div class="content">
-      <div class="form-tag">備考</div>
+      <div class="form-tag">詳細</div>
         <%= form.text_field :content %>
       </div> 
 
   <div class="time">
-    <div class="form-tag">時間</div>
+    <div class="form-tag">日時</div>
         <%= form.datetime_select :start_time %>
       </div>
 
@@ -41,23 +50,23 @@
 <% end %>
   </div>
 <br>
-
-<br>
   <div class="row">
     <div class="col-md-4">
-	    <div class="schedule">今後の予定一覧</div>
+	    <div class="schedule">＊予定一覧＊</div>
         <table class="table">
           <thead class="thead-light">
             <tr>
+              <th>予約順</th>
               <th>予約詳細</th>
-              <th>日程</th>
+              <th>日時</th>
             </tr>
           </thead>
             <tbody>
               <% @yoyakus.each do |yoyaku| %>
             <tr>
+              <td><%= link_to yoyaku.id, yoyaku %></td>
               <td><%= link_to yoyaku.title, yoyaku %></td>
-              <td><%= yoyaku.start_time.strftime("%m-%d") %></td>
+              <td><%= yoyaku.start_time.strftime("%m-%d %H:%M") %></td>
             </tr>
               <% end %>
             </tbody>
@@ -65,3 +74,4 @@
       </div>
     </div>
   </div>
+<% end %>
