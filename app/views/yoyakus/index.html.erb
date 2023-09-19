@@ -11,7 +11,7 @@
           <% if current_admin.present? %>
             <%= link_to yoyaku.title, yoyaku %>  <!-- 管理者向けの詳細ページへのリンク -->
           <% else %>
-            <%= link_to yoyaku.title, user_show_yoyaku_path(yoyaku) %> <!-- 一般ユーザー向けの新しい予約登録画面へのリンク -->
+            <%= link_to yoyaku.title, new_yoyaku_user_path(yoyaku) %> <!-- 一般ユーザー向けの新しい予約登録画面へのリンク -->
           <% end %>
           <!--- %= link_to yoyaku.title, yoyaku %--->
         </div>
@@ -27,6 +27,7 @@
 <nav class="navbar">
   <%= link_to "管理者ログアウト", destroy_admin_session_path, data: { turbo_method: :delete }, class: "login-button" %>
 </nav>
+  <br>
     <p class="edit_table" id="notice"><%= notice %></p>
       <%= form_with(model: @yoyaku, local: true) do |form| %>
         <div class="title">

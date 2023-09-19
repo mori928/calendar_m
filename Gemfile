@@ -74,3 +74,5 @@ end
 gem "simple_calendar", "~> 3.0.2"
 gem "sassc"
 gem 'devise'
+
+gem 'pry-rails'

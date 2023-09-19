@@ -11,7 +11,7 @@
 
 ### Association
 
-- belongs_to :user 
+- has_one :user 
 
 
 
@@ -19,7 +19,7 @@
 
 | Column       | Type       | Options                       |
 | ------------ | ---------  | ------------------------------|
-| personal_id  | integer    | null: false, unique: true     |
+| parson_no    | integer    | null: false, unique: true     |
 | email        | string     | null: false, unique: true     |
 | comment      | text       |                               |
 | yoyaku_id    | references | null: false, foreign_key:     | 

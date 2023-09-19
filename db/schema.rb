@@ -24,13 +24,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_17_021301) do
   end
 
   create_table "users", charset: "utf8", force: :cascade do |t|
-    t.integer "personal_id", null: false
+    t.integer "parson_no", null: false
     t.string "email", default: "", null: false
     t.text "comment"
-    t.bigint "yoyaku_id_id", null: false
+    t.bigint "yoyaku_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["yoyaku_id_id"], name: "index_users_on_yoyaku_id_id"
+    t.index ["yoyaku_id"], name: "index_users_on_yoyaku_id"
   end
 
   create_table "yoyakus", charset: "utf8", force: :cascade do |t|
@@ -41,4 +41,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_17_021301) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "users", "yoyakus"
 end

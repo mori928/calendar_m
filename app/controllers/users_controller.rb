@@ -1,20 +1,33 @@
 class UsersController < ApplicationController
-    belongs_to :yoyaku
-    
-    def create
-      @user = User.new(user_params) # フォームデータを元にUserオブジェクトを作成
-      if @user.save
-        # 保存に成功した場合の処理
-        redirect_to @user, notice: '予約が登録されました。'
-      else
-        # 保存に失敗した場合の処理
-        render 'new'
-      end
-    end# 他のバリデーションなど
-end
+  
+  def index
+  end
 
-private
+  def new
+    @yoyaku = Yoyaku.find(params[:yoyaku_id])
+    @user = User.new
+  end
 
-def user_params
-  params.require(:user).permit(:personal_id, :email, :comment, :yoyaku_id) # 必要な属性を指定
+  def create
+    @user = User.new(user_params)
+    if @user.save
+      # 保存に成功した場合の処理
+      redirect_to root_path, notice: "予約が登録されました。"
+    else
+      # 保存に失敗した場合の処理
+      render 'new'
+    end
+  end
+
+  def show
+    @yoyaku = Yoyaku.find
+  end
+  
+
+
+  private
+
+  def user_params
+    params.require(:user).permit(:parson_no, :email, :comment, :yoyaku_id)
+  end
 end
