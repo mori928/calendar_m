@@ -1,6 +1,6 @@
 class Yoyaku < ApplicationRecord
   
-  # belongs_to :user
+  belongs_to :user
   
   validates :title, presence: true
   validates :start_time, presence: true

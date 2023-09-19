@@ -50,3 +50,7 @@
   color: #b10530;
 }
 
+#notice {
+  color: red; /* 赤色のテキスト */
+  font-weight: bold;
+}
