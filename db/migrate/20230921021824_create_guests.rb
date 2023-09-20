@@ -1,6 +1,6 @@
-class CreateUsers < ActiveRecord::Migration[7.0]
+class CreateGuests < ActiveRecord::Migration[7.0]
   def change
-    create_table :users do |t|
+    create_table :guests do |t|
       t.integer       :parson_no,  null: false
       t.string        :email,      null: false, default: ""
       t.text          :comment
@@ -9,8 +9,3 @@ class CreateUsers < ActiveRecord::Migration[7.0]
     end
   end
 end
-
-
-
-
-

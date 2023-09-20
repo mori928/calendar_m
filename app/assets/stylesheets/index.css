@@ -55,4 +55,14 @@
   font-weight: bold;
 }
 
+.booking {
+  background-color: #ff0055;
+  color: #fff;
+  padding: 5px 10px;
+  text-decoration: none;
+  position: absolute;
+  left: 0;
+}
+
+
 

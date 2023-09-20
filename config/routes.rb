@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :admins 
+  devise_for :users
     root to: 'yoyakus#index'  # ルートパスの設定
     resources :yoyakus do    # RESTfulなリソースとしてのルート
-      resources :users, only: [:index, :new, :create, :show]
+      resources :guests, only: [:index, :new, :create, :show]
         # member do
-        #   get 'user'
+        #   get 'guest'
       # end
     end
   end

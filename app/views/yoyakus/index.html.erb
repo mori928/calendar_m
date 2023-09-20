@@ -9,20 +9,25 @@
     <% yoyakus.each do |yoyaku| %>
       <div class="calendar__yoyaku">
 
-<%# 予約が確定なら予約済みを表示  user present? %>
-            <%# if yoyaku.user.present?%>  
-              <%# <div class='booking'>   %>
-              <%# <span>予約済み</span> %>
-              <%# </div> %>
-              <%# end %>   
+<%# 予約が確定なら予約済みを表示  guest present? %>
+            <% if yoyaku.guest.present?%>  
+              <div class='booking'> 
+              <span>予約済み</span> 
+              </div> 
+              <% end %>   
   <%# //予約が確定なら予約済みを表示 %>
 
         <div>
-          <% if current_admin.present? %>
+          <% if current_user.present? %>
             <%= link_to yoyaku.title, yoyaku %>  <!-- 管理者向けの詳細ページへのリンク -->
           <% else %>
-            <%= link_to yoyaku.title, new_yoyaku_user_path(yoyaku) %> <!-- 一般ユーザー向けの新しい予約登録画面へのリンク -->
-          <% end %>
+            <%= link_to yoyaku.title, new_yoyaku_guest_path(yoyaku) %> <!-- 一般ユーザー向けの新しい予約登録画面へのリンク -->
+              <% if yoyaku.guest.present?%>  
+                <div class='booking'> 
+                <span>予約済み</span> 
+                </div> 
+              <% end %>   
+            <% end %>
           <!--- %= link_to yoyaku.title, yoyaku %--->
         </div>
       </div>
@@ -30,12 +35,12 @@
     <% end %>
 
   <nav class="navbar">
-  <%= link_to "管理者ログイン", new_admin_session_path, class: "login-button" %>
+  <%= link_to "管理者ログイン", new_user_session_path, class: "login-button" %>
 </nav>
 
-<% if current_admin.present? %>
+<% if current_user.present? %>
 <nav class="navbar">
-  <%= link_to "管理者ログアウト", destroy_admin_session_path, data: { turbo_method: :delete }, class: "login-button" %>
+  <%= link_to "管理者ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "login-button" %>
 </nav>
   <br>
     <p class="edit_table" id="notice"><%= notice %></p>
@@ -80,7 +85,7 @@
               <td><%= link_to yoyaku.title, yoyaku %></td>
               <td><%= yoyaku.start_time.strftime("%m-%d %H:%M") %></td>
             <!---予約者のIDを記載--->
-            <!---td><%= link_to "詳細", user_path(yoyaku.user.id) if yoyaku.user %></td--->
+            <!---td><%= link_to "詳細", guest_path(yoyaku.guest.id) if yoyaku.guest %></td--->
             <!---予約者のIDを記載--->
             </tr>
               <% end %>

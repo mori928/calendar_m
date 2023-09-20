@@ -2,7 +2,7 @@
 <%= render 'yoyakus/yoyaku_info', yoyaku: @yoyaku %>
 
 <!-- IDとEmailの登録フォーム -->
-<%= form_with(model: @user,url: yoyaku_users_path, local: true) do |form| %>
+<%= form_with model: @guest, url: yoyaku_guests_path(@yoyaku), local: true do |form| %>
     <div class="form-group">
     <%= form.label :parson_no, '■ ご登録番号:' %>
     <%= form.text_field :parson_no %>
@@ -21,3 +21,11 @@
   <%= form.submit '予約する' %>
   <%= link_to "戻る", root_path %>
 <% end %>
+
+
+
+
+
+
+
+

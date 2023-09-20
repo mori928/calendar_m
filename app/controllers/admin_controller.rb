@@ -1,2 +1,2 @@
-class AdminController < ApplicationController
+class GuestsController < ApplicationController
 end
