@@ -6,5 +6,5 @@ class User < ApplicationRecord
     validates_format_of :email, with: /\A[^@\s]+@[^@\s]+\z/, message: 'は有効なEメールアドレスではありません'
     validates :comment,  length: { maximum: 1000 }, allow_blank: true
     validates :parson_no, :email, presence: true
-
+    
 end

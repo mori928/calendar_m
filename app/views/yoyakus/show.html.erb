@@ -1,7 +1,13 @@
 <!--- 管理者かユーザによって、見える予約の詳細を変えるようにする--->
 <div class="schedule">＊内容確認画面＊</div>
-<p id="notice"><%= notice %></p>
+
 <div class="show">
+
+<p>
+  <strong>予約順：</strong>
+  <%= @yoyaku.id %>
+</p>
+
 <p>
   <strong>予約の詳細：</strong>
   <%= @yoyaku.title %>

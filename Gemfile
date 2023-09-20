@@ -76,3 +76,5 @@ gem "sassc"
 gem 'devise'
 
 gem 'pry-rails'
+
+gem 'dotenv-rails'

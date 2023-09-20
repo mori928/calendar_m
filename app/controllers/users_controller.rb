@@ -10,18 +10,22 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    # @user.yoyaku = params[:user][:yoyaku_id] 
+    @user.yoyaku_id = params[:user][:yoyaku_id] 
     if @user.save
       # 保存に成功した場合の処理
-      redirect_to new_yoyaku_user_path, notice: "予約が登録されました。"
+      # redirect_to new_yoyaku_user_path(@user.yoyaku_id), notice: "予約が登録されました。"
+        redirect_to new_yoyaku_user_path, notice: "予約が登録されました。"
     else
       # 保存に失敗した場合の処理
       render 'new'
     end
   end
 
+
+
   def show
-    @yoyaku = Yoyaku.find
+    @yoyaku = Yoyaku.find(params[:yoyaku_id])
+    # puts "yoyaku_id from params: #{params[:yoyaku_id]}" 
   end
   
 

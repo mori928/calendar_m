@@ -8,6 +8,15 @@
 
     <% yoyakus.each do |yoyaku| %>
       <div class="calendar__yoyaku">
+
+<%# 予約が確定なら予約済みを表示  user present? %>
+            <%# if yoyaku.user.present?%>  
+              <%# <div class='booking'>   %>
+              <%# <span>予約済み</span> %>
+              <%# </div> %>
+              <%# end %>   
+  <%# //予約が確定なら予約済みを表示 %>
+
         <div>
           <% if current_admin.present? %>
             <%= link_to yoyaku.title, yoyaku %>  <!-- 管理者向けの詳細ページへのリンク -->
@@ -58,9 +67,10 @@
         <table class="table">
           <thead class="thead-light">
             <tr>
-              <th>予約順</th>
+              <th>予約No</th>
               <th>予約詳細</th>
               <th>日時</th>
+              <th>予約者</th>
             </tr>
           </thead>
             <tbody>
@@ -69,6 +79,9 @@
               <td><%= link_to yoyaku.id, yoyaku %></td>
               <td><%= link_to yoyaku.title, yoyaku %></td>
               <td><%= yoyaku.start_time.strftime("%m-%d %H:%M") %></td>
+            <!---予約者のIDを記載--->
+            <!---td><%= link_to "詳細", user_path(yoyaku.user.id) if yoyaku.user %></td--->
+            <!---予約者のIDを記載--->
             </tr>
               <% end %>
             </tbody>

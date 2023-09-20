@@ -14,21 +14,22 @@ class YoyakusController < ApplicationController
     @yoyaku = Yoyaku.find(params[:id])
   end
 
-  def create
-    Yoyaku.create(yoyaku_parameter)
-    redirect_to yoyakus_path
-  end
   # def create
-  #   @yoyaku = Yoyaku.new(yoyaku_parameter)
-  # if @yoyaku.save
-  #   redirect_to yoyakus_path, notice: "予約しました"
-  # else
-  #   flash.now[:alert] = "予約に失敗しました。エラー: " + @yoyaku.errors.full_messages.join(", ")
-  #   render 'new'
+  #   binding.pry
+  #   Yoyaku.create(yoyaku_parameter)
+  #   redirect_to yoyakus_path
   # end
-  #   # Yoyaku.create(yoyaku_parameter)
-  #   # redirect_to yoyakus_path
-  # end
+  def create
+    @yoyaku = Yoyaku.new(yoyaku_parameter)
+    binding.pry
+  if @yoyaku.save
+    redirect_to yoyakus_path, notice: "予約しました"
+  else
+    flash.now[:alert] = "予約に失敗しました。エラー: " + @yoyaku.errors.full_messages.join(", ")
+    render 'new'
+  end
+end
+  
   def update
     @yoyaku = Yoyaku.find(params[:id])
     if @yoyaku.update(yoyaku_parameter)
@@ -58,6 +59,6 @@ class YoyakusController < ApplicationController
   private
 
   def yoyaku_parameter
-    params.require(:yoyaku).permit(:title, :content, :start_time)
+    params.require(:yoyaku).permit(:title, :content, :start_time).merge(admin_id: current_user.id)
   end
 end

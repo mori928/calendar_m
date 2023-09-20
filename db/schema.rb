@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_17_021301) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_14_164055) do
   create_table "admins", charset: "utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -34,12 +34,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_17_021301) do
   end
 
   create_table "yoyakus", charset: "utf8", force: :cascade do |t|
+    t.bigint "admin_id", null: false
     t.string "title", null: false
     t.text "content", null: false
     t.datetime "start_time", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["admin_id"], name: "index_yoyakus_on_admin_id"
   end
 
   add_foreign_key "users", "yoyakus"
+  add_foreign_key "yoyakus", "admins"
 end
