@@ -41,8 +41,23 @@ end
 def destroy
   @yoyaku = Yoyaku.find(params[:id])
   @yoyaku.destroy
-  redirect_to yoyakus_path, notice:"削除しました"
+    redirect_to yoyakus_path, notice:"削除しました"
 end
+
+# def cancel
+#   @yoyaku = Yoyaku.find(params[:id])
+#   if @yoyaku.guests.empty?
+#     ActiveRecord::Base.transaction do
+#       @yoyaku.destroy
+#     end
+#     flash[:notice] = "予約が削除されました。"
+#     redirect_to yoyakus_path
+#   else
+#     flash[:alert] = "ゲストが存在するため、予約を削除できません。"
+#     redirect_to yoyaku_path(@yoyaku)
+#   end
+# end
+
 
 
 private
