@@ -1,5 +1,13 @@
 class Yoyaku < ApplicationRecord
   
+  default_scope -> { where(deleted_at: nil) }
+
+  # ソフトデリートのメソッド
+  def soft_delete
+    update(deleted_at: Time.current)
+  end
+
+
   belongs_to :guest, optional: true
   belongs_to :user, optional: true
   

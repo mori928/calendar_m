@@ -1,9 +1,29 @@
 class YoyakusController < ApplicationController
 
-def index
-  @yoyakus = Yoyaku.all
-  @yoyaku = Yoyaku.new 
-end
+  def index
+    @yoyakus = Yoyaku.all
+    @yoyaku = Yoyaku.new 
+    # @guest = Guest.find_by(yoyaku_id: @yoyaku.id) if @yoyaku_ids.present?
+  end
+
+  # def index
+  #   @yoyakus = Yoyaku.all
+  #   @yoyaku = Yoyaku.new 
+  #   @yoyaku_ids = Guest.pluck(:yoyaku_id)
+  #   @guest = Guest.find_by(id: @yoyaku_ids.first) if @yoyaku_ids.present?
+  #   # Guestに関連するYoyakuレコードを取得
+  #   if @guest.present?
+  #     @yoyaku_records = Yoyaku.where(id: @yoyaku_ids)
+  #   else
+  #     @yoyaku_records = [] # ゲストが存在しない場合は空の配列をセット
+  #   end
+  # end
+
+  # def index
+#   @yoyakus = Yoyaku.all
+#   @yoyaku = Yoyaku.new 
+#   # @guests = @yoyakus.guests
+# end
 
 def new
   @yoyaku = Yoyaku.new
@@ -15,9 +35,13 @@ def show
 end
 
 def create
+  guest = Guest.find(params[:guest_id])       # ゲストと関連付け
   @yoyaku = Yoyaku.new(yoyaku_parameter)
   @yoyakus = Yoyaku.all
+  @yoyaku.guest = guest  # ゲストと関連付け
+
   if @yoyaku.save
+
   redirect_to yoyakus_path, notice: "予約しました"
   else
   flash.now[:alert] = "予約に失敗しました。エラー: " + @yoyaku.errors.full_messages.join(", ")
@@ -40,9 +64,15 @@ end
 
 def destroy
   @yoyaku = Yoyaku.find(params[:id])
-  @yoyaku.destroy
-    redirect_to yoyakus_path, notice:"削除しました"
+  @yoyaku.soft_delete # ソフトデリートのメソッドを呼び出す
+  redirect_to yoyakus_path, notice: "予約が削除されました。"
 end
+
+# def destroy
+#   @yoyaku = Yoyaku.find(params[:id])
+#   @yoyaku.destroy
+#     redirect_to yoyakus_path, notice:"削除しました"
+# end
 
 # def cancel
 #   @yoyaku = Yoyaku.find(params[:id])

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_21_021824) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_22_122335) do
   create_table "guests", charset: "utf8", force: :cascade do |t|
     t.integer "parson_no", null: false
     t.string "email", default: "", null: false
@@ -40,9 +40,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_21_021824) do
     t.datetime "start_time", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_yoyakus_on_deleted_at"
     t.index ["user_id"], name: "index_yoyakus_on_user_id"
   end
 
-  add_foreign_key "users", "yoyakus"
-  add_foreign_key "yoyakus", "guests"
+  add_foreign_key "guests", "yoyakus"
+  add_foreign_key "yoyakus", "users"
 end

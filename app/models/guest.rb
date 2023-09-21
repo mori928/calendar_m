@@ -1,5 +1,5 @@
 class Guest < ApplicationRecord
-  has_many :yoyakus
+  # belongs_to :yoyaku, optional: true
 
   validates_format_of :parson_no, with: /\A\d{7}\z/, message: 'は半角数値7桁のみで入力してください'
   validates_format_of :email, with: /\A[^@\s]+@[^@\s]+\z/, message: 'は有効なEメールアドレスではありません'
