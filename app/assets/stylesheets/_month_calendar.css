@@ -13,9 +13,3 @@
   margin: 0 20px; /* 左右のマージンを10pxに設定 */
 }
 
-.wday-0 a {
-  color: red;
-}
-.wday-6 a {
-  color: blue;
-} 

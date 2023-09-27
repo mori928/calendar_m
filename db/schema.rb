@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_22_122335) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_26_080619) do
+  create_table "bookings", charset: "utf8", force: :cascade do |t|
+    t.integer "yoyaku_id", null: false
+    t.integer "guest_id", null: false
+    t.integer "parson_no", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "guests", charset: "utf8", force: :cascade do |t|
     t.integer "parson_no", null: false
     t.string "email", default: "", null: false

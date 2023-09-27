@@ -14,7 +14,7 @@
   
   <div class="comment_form">
     <%= form.label :comment, '■ 相談内容があれば記載ください' %><br>
-    <%= form.text_area :comment, maxlength: 1000, class: "my-custom-class" %>
+    <%= form.text_area :comment, maxlength: 1000, rows: 5, cols: 50, class: "my-custom-class" %>
   </div>
   
   <p id="notice"><%= notice %></p>

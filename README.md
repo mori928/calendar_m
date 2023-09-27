@@ -1,31 +1,55 @@
 # テーブル設計
 
-## yoyakusテーブル
-
-| Column             | Type       | Options             |
-| -------------------| ---------- | --------------------|
-| title              | string     | null: false         |
-| content            | text       | null: false         |
-| start_time         | datetime   | null: false         |
-
-
-### Association
-
-- has_one :user 
-
-
-
 ## users テーブル
-
-| Column       | Type       | Options                       |
-| ------------ | ---------  | ------------------------------|
-| parson_no    | integer    | null: false, unique: true     |
-| email        | string     | null: false, unique: true     |
-| comment      | text       |                               |
-| yoyaku_id    | references | null: false, foreign_key:     | 
+| Column      | Type     | Options                   |
+| ------------| -------- | --------------------------|
+| first_name  | string   | null: false               |
+| last_name   | string   | null: false               |
+| email       | string   | null: false, unique: true |
 
 ### Association
 - has_many :yoyakus
+
+
+## yoyakusテーブル
+
+| Column      | Type       | Options                  |
+| ------------| ---------- | -------------------------|
+| title       | string     | null: false              |
+| content     | text       | null: false              |
+| start_time  | datetime   | null: false              |
+| user        | references | null: false, foreign_key:|
+
+### Association
+- belongs_to :user
+- has one :booking
+
+
+
+## booking テーブル
+
+| Column    | Type       | Options                        |
+| ----------| --------   | -------------------------------|
+| yoyaku_id | references | null: false, foreign_key: true |
+| guest_id  | references | null: false, foreign_key: true |
+
+### Association
+- belongs_to :yoyaku
+- belongs_to :guest
+
+
+
+## guests テーブル
+
+| Column     | Type       | Options                    |
+| ---------- | ---------  | ---------------------------|
+| parson_no  | integer    | null: false, unique: true  |
+| email      | string     | null: false, unique: true  |
+| comment    | text       |                            |
+| yoyaku_id  | references | null: false, foreign_key:  | 
+
+### Association
+- has_one :yoyakus
 
 
 

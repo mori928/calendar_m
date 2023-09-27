@@ -1,5 +1,5 @@
 <div class="toppage">
-<h2 class="top">予約カレンダー</h2>
+<h2 class="top"> ＊＊ 予約カレンダー ＊＊</h2>
   <div class="col-md-8">
   <p id="notice"><%= notice %></p>
     <%= month_calendar events: @yoyakus do |date, yoyakus| %>
@@ -7,60 +7,51 @@
 
     <% yoyakus.each do |yoyaku| %>
       <div class="calendar__yoyaku">
-
 <%# 予約が確定なら予約済みを表示  guest present? %>
-            <% if yoyaku.guest.present?%>  
-        
-  <%# //予約が確定なら予約済みを表示 %>
-
+<%# //予約が確定なら予約済みを表示 %>
         <div>
           <% if current_user.present? %>
             <%= link_to yoyaku.title, yoyaku %>  <!-- 管理者向けの詳細ページへのリンク -->
           <% else %>
             <%= link_to yoyaku.title, new_yoyaku_guest_path(yoyaku) %> <!-- 一般ユーザー向けの新しい予約登録画面へのリンク -->
-              <% if yoyaku.guest.present?%>  
-                <div class='booking'> 
-                <span>予約済み</span> 
-                </div> 
-              <% end %>   
-          <% end %>
-          <!--- %= link_to yoyaku.title, yoyaku %--->
+              <!--- 予約があれば、予約済みと文字が現れる設定--->  
+          <% end %>   
         </div>
       </div>
       <% end %>
     <% end %>
+  </div>
 
   <nav class="navbar">
   <%= link_to "管理者ログイン", new_user_session_path, class: "login-button" %>
   </nav>
 
-<% if current_user.present? %>
-<nav class="navbar">
+  <% if current_user.present? %>
+  <nav class="navbar">
   <%= link_to "管理者ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "login-button" %>
-</nav>
+  </nav>
   <br>
-    <p class="edit_table" id="notice"><%= notice %></p>
-      <%= form_with(model: @yoyaku, local: true) do |form| %>
+  <p class="edit_table" id="notice"><%= notice %></p>
+    <%= form_with(model: @yoyaku, local: true) do |form| %>
       <div class="title">
         <div class="form-tag">面談タイプ</div>
           <%= form.text_field :title %>
       </div>
 
-    <div class="content">
-      <div class="form-tag">詳細</div>
-        <%= form.text_field :content %>
-    </div> 
+      <div class="content">
+        <div class="form-tag">詳細</div>
+          <%= form.text_field :content %>
+      </div> 
 
-    <div class="time">
-      <div class="form-tag">日時</div>
-        <%= form.datetime_select :start_time %>
-    </div>
+      <div class="time">
+        <div class="form-tag">日時</div>
+          <%= form.datetime_select :start_time %>
+      </div>
 
-    <div class="submit">
-      <%= form.submit %>
-    </div>
-  <% end %>
-  </div>
+      <div class="submit">
+        <%= form.submit %>
+      </div>
+    <% end %>
 <br>
   <div class="row">
     <div class="col-md-4">
@@ -74,26 +65,29 @@
               <th>予約者</th>
             </tr>
           </thead>
-            <tbody>
+          <tbody>
               <% @yoyakus.each do |yoyaku| %>
             <tr>
               <td><%= link_to yoyaku.id, yoyaku %></td>
               <td><%= link_to yoyaku.title, yoyaku %></td>
               <td><%= yoyaku.start_time.strftime("%m-%d %H:%M") %></td>
             <!---予約者のIDを記載--->
-            <td>
-            <% if yoyaku.guest.present? && yoyaku.guest.person_no.present? %>
-              <p><strong>予約ID:</strong> <%= yoyaku.guest.person_no %></p>
-            <% else %>
-            <p>予約なし</p>
-            <% end %>
-            </td>
-            </tr>
+              <% if yoyaku.bookings.any? %>
+                <% yoyaku.bookings.order(:yoyaku_id).each do |booking| %>
+                  <!-- bookingにparson_noが存在する場合のみ表示 -->
+                <% if booking.parson_no.present? %>
+                <td><%= booking.parson_no %><%= booking.yoyaku_id %></td>
+                <% end %>
+                <% end %>
+              <% else %>
+                <td>予約なし</td>
               <% end %>
-            </tbody>
+            </tr>
+          <% end %>
+          </tbody>
         </table>
       </div>
     </div>
   </div>
-  <% end %>
-  
+  </div>
+<% end %>

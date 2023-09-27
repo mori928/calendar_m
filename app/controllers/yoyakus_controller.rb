@@ -3,7 +3,10 @@ class YoyakusController < ApplicationController
   def index
     @yoyakus = Yoyaku.all
     @yoyaku = Yoyaku.new 
+    @bookings = Booking.where(yoyaku_id: @yoyakus.map(&:id))
     # @guest = Guest.find_by(yoyaku_id: @yoyaku.id) if @yoyaku_ids.present?
+    # if @guest.present?
+    # @yoyakus = yoyaku.includes(:user).order("created_at DESC")
   end
 
   # def index
@@ -19,12 +22,6 @@ class YoyakusController < ApplicationController
   #   end
   # end
 
-  # def index
-#   @yoyakus = Yoyaku.all
-#   @yoyaku = Yoyaku.new 
-#   # @guests = @yoyakus.guests
-# end
-
 def new
   @yoyaku = Yoyaku.new
   @yoyakus = Yoyaku.all
@@ -32,17 +29,18 @@ end
 
 def show
   @yoyaku = Yoyaku.find(params[:id])
+  @Booking = @yoyaku.bookings
 end
+
 
 def create
   guest = Guest.find(params[:guest_id])       # ゲストと関連付け
   @yoyaku = Yoyaku.new(yoyaku_parameter)
-  @yoyakus = Yoyaku.all
   @yoyaku.guest = guest  # ゲストと関連付け
 
   if @yoyaku.save
-
-  redirect_to yoyakus_path, notice: "予約しました"
+    booking = Booking.create(yoyaku_id: @yoyaku.id, guest_id: guest.id)
+    redirect_to yoyakus_path, notice: "予約しました"
   else
   flash.now[:alert] = "予約に失敗しました。エラー: " + @yoyaku.errors.full_messages.join(", ")
   render 'new'
@@ -52,7 +50,7 @@ end
 def update
   @yoyaku = Yoyaku.find(params[:id])
   if @yoyaku.update(yoyaku_parameter)
-    redirect_to yoyakus_path, notice: "編集しました"
+    redirect_to yoyakus_path
   else
     render 'edit'
   end
